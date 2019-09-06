@@ -1,0 +1,26 @@
+@import 'utils/mixins.styl'
+
+h1, h2, h3
+  margin: 0
+  padding: 0
+
+p
+  font-size: remCalc(16)
+  line-height: 1.8
+  margin: 0
+  margin-bottom: @font-size
+  +minMedia(sm)
+    font-size: remCalc(18)
+    margin-bottom: @font-size
+
+.section-heading
+  color: var(--color-heading)
+  font-size: remCalc(28)
+  line-height: 1
+  margin-bottom: remCalc(25)
+  +minMedia(md)
+    font-size: remCalc(36)
+    margin-bottom: remCalc(50)
+    text-align: center
+  +minMedia(lg)
+    font-size: remCalc(48)

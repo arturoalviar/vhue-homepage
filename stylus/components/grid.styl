@@ -1,0 +1,30 @@
+@import '../utils/mixins.styl'
+@import '../utils/vars.styl'
+
+.vh-grid
+  &:not(:last-of-type)
+    margin-bottom: spacing.md
+    +minMedia(sm)
+      margin-bottom: spacing.xl
+
++minMedia(sm)
+  .vh-grid
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    grid-gap: vhGrid.gap
+    align-items: center
+
+  .vh-grid-item
+    &.is-content
+      grid-column: 1 / 2
+      grid-row: 1
+    &.is-image
+      grid-column: 2 / -1
+      grid-row: 1
+
+  .vh-grid.is-reverse
+    .vh-grid-item
+      &.is-content
+        grid-column: 3 / -1
+      &.is-image
+        grid-column: 1 / 3

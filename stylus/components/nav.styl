@@ -1,0 +1,95 @@
+@import '../utils/mixins.styl'
+
+nav
+  background: transparent
+  display: flex
+  flex-flow: column
+  justify-content: center
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  height: remCalc(80)
+  width: 100%
+  z-index: 9009
+  +minMedia(md)
+    height: remCalc(100)
+  &:before
+    background: #FFFFFF
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .08)
+    content: ''
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    width: 100%
+    height: 100%
+    transform: scaleY(0)
+    transform-origin: top
+    transition: transform .125s ease-in-out
+    will-change: transform
+    z-index: -1
+  .container
+    display: flex
+    align-items: center
+  ul
+    display: flex
+    align-items: center
+    justify-content: space-between
+    list-style: none
+    padding: 0
+    margin: 0
+    li
+      color: #FFF
+      font-size: remCalc(18)
+      +minMedia(md)
+        margin-left: remCalc(30)
+      a
+        padding: remCalc(30)
+        +minMedia(md)
+          padding: remCalc(30) remCalc(10)
+          padding-right: 0
+    +maxMedia(md)
+      background: #FFF
+      flex-flow: column
+      align-items: flex-start
+      position: absolute
+      top: 100%
+      left: 0
+      width: 100%
+      opacity: 0
+      transition: opacity .2s ease
+      li
+        color: var(--color-primary)
+        display: block
+        line-height: 2
+        margin: 0
+        width: 100%
+        a
+          display: block
+  &.is-active
+    &:before
+      transform: scaleY(1)
+    a,
+    .hamburger-menu
+      color: var(--color-primary)
+
+.vh-logo
+  color: #FFFFFF
+  font-size: remCalc(24)
+  font-weight: bold
+  margin-right: auto
+  +minMedia(md)
+    font-size: remCalc(32)
+
+.hamburger-menu
+  background: none
+  border: none
+  color: #FFF
+  cursor: pointer
+  font-size: remCalc(18)
+  font-family: inherit
+  outline: none
+  +minMedia(md)
+    display: none

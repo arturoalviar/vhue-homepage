@@ -1,0 +1,52 @@
+@import '../utils/colors.styl'
+@import '../utils/mixins.styl'
+@import '../utils/vars.styl'
+
+.grid-getting-started
+  +minMedia(sm)
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    grid-gap: vhGrid.gap
+  +minMedia(md)
+    grid-template-columns: repeat(3, 1fr)
+    padding-top: 32px
+
+.card-getting-started
+  background: #FFFFFF
+  border-radius: .35rem
+  box-shadow: 0 6px 22px rgba(colors.primary, .08)
+  padding: remCalc(30)
+  position: relative
+  p
+    margin: 0
+  +minMedia(md)
+    padding: remCalc(40)
+  +maxMedia(md)
+    &:not(:last-of-type)
+      margin-bottom: vhGrid.gap
+
+.heading-getting-started
+  color: var(--color-heading)
+  font-size: remCalc(22)
+  font-weight: 600
+  margin-bottom: remCalc(15)
+  position: relative
+
+.icon-getting-started
+  background: linear-gradient(60deg, #3369ff, #5A62E7)
+  box-shadow: 0 12px 28px rgba(colors.primary, .08)
+  border-radius: 50%
+  width: remCalc(64)
+  height: @width
+  position: relative
+  margin-bottom: remCalc(20)
+  +minMedia(md)
+    margin-top: -62px
+  svg
+    fill: #FFF
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    width: remCalc(32)
+    height: @width

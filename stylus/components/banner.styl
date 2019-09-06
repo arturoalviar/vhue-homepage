@@ -1,0 +1,59 @@
+@import '../utils/mixins.styl'
+@import '../utils/vars.styl'
+
+.banner
+  background: linear-gradient(45deg, #3369ff, #5A62E7)
+  color: hsl(0, 0, 97%)
+  display: flex
+  flex-flow: column
+  align-items: center
+  justify-content: center
+  padding-top: remCalc(140)
+  +minMedia(md)
+    padding-top: remCalc(150)
+    padding-bottom: @padding-top
+    min-height: 800px
+  +minMedia(xxl)
+    min-height: 1000px
+  h2
+    font-size: remCalc(28)
+    margin: 0
+    margin-bottom: remCalc(15)
+    +minMedia(md)
+      font-size: remCalc(40)
+      margin-bottom: remCalc(25)
+
+.banner-container
+  +minMedia(md)
+    display: grid
+    grid-template-columns: repeat(12, 1fr)
+    grid-gap: 30px
+    align-items: center
+    justify-content: center
+
+.banner-content
+  margin-bottom: spacing.md
+  text-align: center
+  +minMedia(sm)
+    padding-left: remCalc(150)
+    padding-right: @padding-left
+  +minMedia(md)
+    grid-column: 1 / 5
+    grid-row: 1
+    margin-bottom: 0
+    text-align: left
+  .button-group
+    justify-content: center
+    +minMedia(md)
+      justify-conent: flex-start
+
+.banner-image
+  +minMedia(md)
+    grid-column: 4 / -1
+    grid-row: 1
+    width: 1400px
+  +minMedia(xxl)
+    width: 1050px
+
+.banner-app-icon
+  max-width: 256px

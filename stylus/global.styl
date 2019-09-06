@@ -1,0 +1,60 @@
+@import 'utils/colors.styl'
+@import 'utils/mixins.styl'
+
+:root {
+  --color-bg: colors.bg;
+  --color-heading: colors.heading;
+  --color-text: colors.text;
+  --color-primary: colors.primary;
+  --color-gray: colors.gray;
+}
+
+html
+  box-sizing: border-box
+
+*,
+*:before,
+*:after
+  box-sizing: inherit
+
+body
+  background: var(--color-bg)
+  color: var(--color-text)
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif
+  font-size: 100%
+  padding: 0
+  margin: 0
+
+a
+  color: inherit
+  text-decoration: none
+
+
+.button-group
+  +minMedia(md)
+    display: flex
+    align-items: center
+
+img
+  max-width: 100%
+
+.container
+  padding-left: 30px
+  padding-right: 30px
+  max-width: 1260px
+  margin: 0 auto
+  width: 100%
+
+.vhue-section
+  padding-top: remCalc(40)
+  padding-bottom: @padding-top
+  position: realtive
+  +minMedia(md)
+    padding-top: remCalc(100)
+    padding-bottom: @padding-top
+
+.feature-global-command
+  padding-top: 100px
+
+@import 'typography.styl'
+@import 'components/grid.styl'

@@ -1,0 +1,13 @@
+@import '../utils/mixins.styl'
+@import '../utils/vars.styl'
+
+footer
+  background: var(--color-gray)
+  border-top: 2px solid var(--color-bg)
+  padding: container.padding 0
+  text-align: center
+  p
+    font-size: remCalc(12)
+    margin: 0
+    +minMedia(md)
+      font-size: remCalc(14)

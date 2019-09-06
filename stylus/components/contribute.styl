@@ -1,0 +1,15 @@
+@import '../utils/mixins.styl'
+
+.section-contribute
+  background: linear-gradient(65deg, #5A62E7, #3369ff)
+  color: var(--color-gray)
+  padding-top: remCalc(60)
+  padding-bottom: @padding-top
+  text-align: center
+  +minMedia(md)
+    padding-top: remCalc(150)
+    padding-bottom: @padding-top
+    .button-group
+      justify-content: center
+  .section-heading
+    color: #FFF

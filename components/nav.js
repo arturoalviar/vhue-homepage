@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import smoothscroll from 'smoothscroll-polyfill'
+import debounce from 'lodash.debounce'
 import '../stylus/components/nav.styl'
 
 const Nav = () => {
@@ -20,6 +21,10 @@ const Nav = () => {
       // add background when scrolled and keep background if mobile menu is open
       isTop() && !isMobileMenuActive ? setIsNavActive(false) : setIsNavActive(true)
     })
+  }
+
+  function handleResize() {
+    setIsMobileMenuActive(false)
   }
 
   function scrollToAnchor(event) {
@@ -48,6 +53,7 @@ const Nav = () => {
     // init smoothscroll
     smoothscroll.polyfill()
     window.addEventListener('scroll', handleScroll)
+    window.addEventListener('resize', debounce(handleResize, 150))
 
     return () => {
       window.removeEventListener('scroll', handleScroll)

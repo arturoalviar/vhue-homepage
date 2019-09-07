@@ -8,7 +8,8 @@
   flex-flow: column
   align-items: center
   justify-content: center
-  padding-top: remCalc(140)
+  padding-top: spacing.xl
+  overflow: hidden
   +minMedia(md)
     padding-top: remCalc(150)
     padding-bottom: @padding-top
@@ -27,7 +28,7 @@
   +minMedia(md)
     display: grid
     grid-template-columns: repeat(12, 1fr)
-    grid-gap: 30px
+    grid-gap: vhGrid.gap
     align-items: center
     justify-content: center
 
@@ -35,9 +36,10 @@
   margin-bottom: spacing.md
   text-align: center
   +minMedia(sm)
-    padding-left: remCalc(150)
+    padding-left: remCalc(120)
     padding-right: @padding-left
   +minMedia(md)
+    padding: 0
     grid-column: 1 / 5
     grid-row: 1
     margin-bottom: 0
@@ -45,15 +47,12 @@
   .button-group
     justify-content: center
     +minMedia(md)
-      justify-conent: flex-start
+      justify-content: flex-start
 
 .banner-image
   +minMedia(md)
     grid-column: 4 / -1
     grid-row: 1
-    width: 1400px
+    width: remCalc(1400)
   +minMedia(xxl)
-    width: 1050px
-
-.banner-app-icon
-  max-width: 256px
+    width: remCalc(1050)

@@ -1,10 +1,15 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import smoothscroll from 'smoothscroll-polyfill'
 import '../stylus/components/nav.styl'
 
 const Nav = () => {
   let timer
-  const navBarRef = useRef()
+  const [isNavActive, setIsNavActive] = useState(false)
+  const [isMobileMenuActive, setIsMobileMenuActive] = useState(false)
+
+  function isTop() {
+    return window.scrollY < 50
+  }
 
   function handleScroll() {
     if (timer) {
@@ -12,10 +17,8 @@ const Nav = () => {
     }
 
     timer = window.requestAnimationFrame(function () {
-      const isTop = window.scrollY < 50
-      isTop ?
-      navBarRef.current.classList.remove('is-active') :
-      navBarRef.current.classList.add('is-active')
+      // add background when scrolled and keep background if mobile menu is open
+      isTop() && !isMobileMenuActive ? setIsNavActive(false) : setIsNavActive(true)
     })
   }
 
@@ -33,22 +36,37 @@ const Nav = () => {
     })
   }
 
+  function toggleMobileMenu(event) {
+    setIsMobileMenuActive(!isMobileMenuActive)
+  }
+
   useEffect(() => {
+    // init smoothscroll
     smoothscroll.polyfill()
     window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll')
+      window.removeEventListener('scroll', handleScroll)
     }
   })
 
+  // toggle nav active class when mobile menu is toggled
+  useEffect(() => {
+    if (isMobileMenuActive && !isNavActive) {
+      setIsNavActive(true)
+    }
+    else if (!isMobileMenuActive && isTop()) {
+      setIsNavActive(false)
+    }
+  }, [isMobileMenuActive])
+
   return (
-    <nav ref={navBarRef}>
+    <nav id="vh-nav" className={isNavActive ? 'is-active' : ''}>
       <div className="container">
         <div className="vh-logo">
           <a href="#banner" onClick={scrollToAnchor}>vhue</a>
         </div>
-        <ul>
+        <ul className="vh-nav-menu">
           <li>
             <a href="#getting-started" onClick={scrollToAnchor}>Getting Started</a>
           </li>
@@ -59,8 +77,19 @@ const Nav = () => {
             <a href="https://github.com/arturoalviar/vhue" target="_blank" rel="noopener">Github</a>
           </li>
         </ul>
-        <button className="hamburger-menu">Menu</button>
+        <button className="hamburger-menu" onClick={toggleMobileMenu}>Menu</button>
       </div>
+      <ul className={`vh-nav-mobile ${isMobileMenuActive ? 'is-active' : ''}`}>
+        <li>
+          <a href="#getting-started" onClick={scrollToAnchor}>Getting Started</a>
+        </li>
+        <li>
+          <a href="#features" onClick={scrollToAnchor}>Features</a>
+        </li>
+        <li>
+          <a href="https://github.com/arturoalviar/vhue" target="_blank" rel="noopener">Github</a>
+        </li>
+      </ul>
     </nav>
   )
 }

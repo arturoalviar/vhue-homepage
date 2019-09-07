@@ -6,10 +6,18 @@
   padding-top: remCalc(60)
   padding-bottom: @padding-top
   text-align: center
+  .button-group
+    display: flex
+    flex-flow: column
+    max-width: remCalc(320)
+    margin-left: auto
+    margin-right: auto
   +minMedia(md)
     padding-top: remCalc(150)
     padding-bottom: @padding-top
     .button-group
+      flex-flow: row
       justify-content: center
+      max-width: 100%
   .section-heading
     color: #FFF

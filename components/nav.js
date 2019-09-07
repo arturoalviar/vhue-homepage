@@ -81,7 +81,9 @@ const Nav = () => {
             <a href="https://github.com/arturoalviar/vhue" target="_blank" rel="noopener">Github</a>
           </li>
         </ul>
-        <button className="hamburger-menu" onClick={toggleMobileMenu}>Menu</button>
+        <button className="hamburger-menu" onClick={toggleMobileMenu}>
+          { isMobileMenuActive ? 'close' : 'menu'}
+        </button>
       </div>
       <ul className={`vh-nav-mobile ${isMobileMenuActive ? 'is-active' : ''}`}>
         <li>

@@ -70,6 +70,20 @@ const Nav = () => {
     }
   }, [isMobileMenuActive])
 
+  const renderNavItems = () => (
+    <>
+      <li>
+        <a href="#getting-started" onClick={scrollToAnchor}>Getting Started</a>
+      </li>
+      <li>
+        <a href="#features" onClick={scrollToAnchor}>Features</a>
+      </li>
+      <li>
+        <a href="https://github.com/arturoalviar/vhue" target="_blank" rel="noopener">Github</a>
+      </li>
+    </>
+  )
+
   return (
     <nav id="vh-nav" className={isNavActive ? 'is-active' : ''}>
       <div className="container">
@@ -77,30 +91,14 @@ const Nav = () => {
           <a href="#banner" onClick={scrollToAnchor}>vhue</a>
         </div>
         <ul className="vh-nav-menu">
-          <li>
-            <a href="#getting-started" onClick={scrollToAnchor}>Getting Started</a>
-          </li>
-          <li>
-            <a href="#features" onClick={scrollToAnchor}>Features</a>
-          </li>
-          <li>
-            <a href="https://github.com/arturoalviar/vhue" target="_blank" rel="noopener">Github</a>
-          </li>
+          {renderNavItems()}
         </ul>
         <button className="hamburger-menu" onClick={toggleMobileMenu}>
           { isMobileMenuActive ? 'close' : 'menu'}
         </button>
       </div>
       <ul className={`vh-nav-mobile ${isMobileMenuActive ? 'is-active' : ''}`}>
-        <li>
-          <a href="#getting-started" onClick={scrollToAnchor}>Getting Started</a>
-        </li>
-        <li>
-          <a href="#features" onClick={scrollToAnchor}>Features</a>
-        </li>
-        <li>
-          <a href="https://github.com/arturoalviar/vhue" target="_blank" rel="noopener">Github</a>
-        </li>
+        {renderNavItems()}
       </ul>
     </nav>
   )

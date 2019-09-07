@@ -1,5 +1,7 @@
 @import '../utils/mixins.styl'
 
+navTransition = .125s
+
 nav
   background: transparent
   display: flex
@@ -27,53 +29,69 @@ nav
     height: 100%
     transform: scaleY(0)
     transform-origin: top
-    transition: transform .125s ease-in-out
+    transition: transform navTransition ease-in-out
     will-change: transform
     z-index: -1
   .container
     display: flex
     align-items: center
-  ul
-    display: flex
-    align-items: center
-    justify-content: space-between
-    list-style: none
-    padding: 0
-    margin: 0
-    li
-      color: #FFF
-      font-size: remCalc(18)
-      +minMedia(md)
-        margin-left: remCalc(30)
-      a
-        padding: remCalc(30)
-        +minMedia(md)
-          padding: remCalc(30) remCalc(10)
-          padding-right: 0
-    +maxMedia(md)
-      background: #FFF
-      flex-flow: column
-      align-items: flex-start
-      position: absolute
-      top: 100%
-      left: 0
-      width: 100%
-      opacity: 0
-      transition: opacity .2s ease
-      li
-        color: var(--color-primary)
-        display: block
-        line-height: 2
-        margin: 0
-        width: 100%
-        a
-          display: block
   &.is-active
     &:before
       transform: scaleY(1)
     a,
     .hamburger-menu
       color: var(--color-primary)
+
+.vh-nav-menu
+  display: none
+  list-style: none
+  padding: 0
+  margin: 0
+  +minMedia(md)
+    display: flex
+    align-items: center
+    justify-content: space-between
+  li
+    color: #FFF
+    font-size: remCalc(18)
+    +minMedia(md)
+      margin-left: remCalc(30)
+    a
+      padding: remCalc(30)
+      +minMedia(md)
+        padding: remCalc(30) remCalc(10)
+        padding-right: 0
+
+.vh-nav-mobile
+  background: #FFFFFF
+  display: flex
+  flex-flow: column
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  width: 100%
+  max-width: 440px
+  height: 100vh
+  margin: 0
+  padding: 0
+  padding-top: 80px
+  transform: translate3d(100%, 0, 0)
+  transition: transform navTransition ease-in-out
+  z-index: -1
+  +minMedia(md)
+    display: none
+  li
+    color: var(--color-primary)
+    display: block
+    line-height: 2
+    margin: 0
+    width: 100%
+    a
+      display: block
+      padding: remCalc(30)
+  &.is-active
+    transform: translate3d(0, 0, 0)
 
 .vh-logo
   color: #FFFFFF

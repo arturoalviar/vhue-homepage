@@ -58,7 +58,7 @@ const Nav = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  })
+  }, [])
 
   // toggle nav active class when mobile menu is toggled
   useEffect(() => {

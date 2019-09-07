@@ -30,6 +30,10 @@ const Nav = () => {
     const anchor = document.getElementById(id)
     const offset = anchor.getBoundingClientRect().top - 100 + window.pageYOffset
 
+    if (isMobileMenuActive) {
+      setIsMobileMenuActive(false)
+    }
+
     window.scroll({
       top: offset,
       behavior: 'smooth'

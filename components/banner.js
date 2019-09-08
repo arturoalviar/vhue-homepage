@@ -8,7 +8,7 @@ const Banner = () => (
       <div className="banner-content">
         <h2>Control your hue lights from your desktop</h2>
         <div className="button-group">
-          <Button href="#" className="primary" linksOut>Download for macOS</Button>
+          <Button href="https://github.com/arturoalviar/vhue/releases/download/0.0.1/vhue-0.0.1-mac.dmg" className="primary" linksOut>Download for macOS</Button>
         </div>
       </div>
       <div className="banner-image">

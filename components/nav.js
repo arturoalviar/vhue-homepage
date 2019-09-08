@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import smoothscroll from 'smoothscroll-polyfill'
 import debounce from 'lodash.debounce'
 import '../stylus/components/nav.styl'
@@ -7,6 +7,8 @@ const Nav = () => {
   let timer
   const [isNavActive, setIsNavActive] = useState(false)
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false)
+  const [navHeight, setNavHeight] = useState(0)
+  const navbar = useRef()
 
   function isTop() {
     return window.scrollY < 50
@@ -25,6 +27,7 @@ const Nav = () => {
 
   function handleResize() {
     setIsMobileMenuActive(false)
+    setNavHeight(navbar.current.offsetHeight)
   }
 
   function scrollToAnchor(event) {
@@ -33,7 +36,7 @@ const Nav = () => {
     if (href.charAt(0) !== '#') return;
     const id = href.slice(1)
     const anchor = document.getElementById(id)
-    const offset = anchor.getBoundingClientRect().top - 100 + window.pageYOffset
+    const offset = anchor.getBoundingClientRect().top - navHeight + window.pageYOffset
 
     if (isMobileMenuActive) {
       setIsMobileMenuActive(false)
@@ -52,6 +55,7 @@ const Nav = () => {
   useEffect(() => {
     // init smoothscroll
     smoothscroll.polyfill()
+    setNavHeight(navbar.current.offsetHeight)
     window.addEventListener('scroll', handleScroll)
     window.addEventListener('resize', debounce(handleResize, 150))
 
@@ -85,7 +89,7 @@ const Nav = () => {
   )
 
   return (
-    <nav id="vh-nav" className={isNavActive ? 'is-active' : ''}>
+    <nav ref={navbar} id="vh-nav" className={isNavActive ? 'is-active' : ''}>
       <div className="container">
         <div className="vh-logo">
           <a href="#banner" onClick={scrollToAnchor}>vhue</a>

@@ -26,13 +26,15 @@ const Nav = () => {
     })
   }
 
-  function handleResize() {
+  function updateOnResize() {
     const { display } = getComputedStyle(mobileNav.current)
     // only set state to false when the node is display none
     // when a user scrolls on mobile, the browser triggers a resize when the toolbar is expanded or collapesed
     if ( display === 'none') { setIsMobileMenuActive(false) }
     setNavHeight(navbar.current.offsetHeight)
   }
+
+  const handleResize = debounce(updateOnResize, 150)
 
   function scrollToAnchor(event) {
     event.preventDefault()
@@ -61,10 +63,11 @@ const Nav = () => {
     smoothscroll.polyfill()
     setNavHeight(navbar.current.offsetHeight)
     window.addEventListener('scroll', handleScroll)
-    window.addEventListener('resize', debounce(handleResize, 150))
+    window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleResize)
     }
   }, [])
 

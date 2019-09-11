@@ -9,6 +9,7 @@ const Nav = () => {
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false)
   const [navHeight, setNavHeight] = useState(0)
   const navbar = useRef()
+  const mobileNav = useRef()
 
   function isTop() {
     return window.scrollY < 50
@@ -26,7 +27,10 @@ const Nav = () => {
   }
 
   function handleResize() {
-    setIsMobileMenuActive(false)
+    const { display } = getComputedStyle(mobileNav.current)
+    // only set state to false when the node is display none
+    // when a user scrolls on mobile, the browser triggers a resize when the toolbar is expanded or collapesed
+    if ( display === 'none') { setIsMobileMenuActive(false) }
     setNavHeight(navbar.current.offsetHeight)
   }
 
@@ -101,7 +105,7 @@ const Nav = () => {
           { isMobileMenuActive ? 'close' : 'menu'}
         </button>
       </div>
-      <ul className={`vh-nav-mobile ${isMobileMenuActive ? 'is-active' : ''}`}>
+      <ul ref={mobileNav} className={`vh-nav-mobile ${isMobileMenuActive ? 'is-active' : ''}`}>
         {renderNavItems()}
       </ul>
     </nav>

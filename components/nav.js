@@ -10,6 +10,7 @@ const Nav = () => {
   const [navHeight, setNavHeight] = useState(0)
   const navbar = useRef()
   const mobileNav = useRef()
+  const mobileActiveRef = useRef(false)
 
   function isTop() {
     return window.scrollY < 50
@@ -22,7 +23,7 @@ const Nav = () => {
 
     timer = window.requestAnimationFrame(function () {
       // add background when scrolled and keep background if mobile menu is open
-      isTop() && !isMobileMenuActive ? setIsNavActive(false) : setIsNavActive(true)
+      isTop() && !mobileActiveRef.current ? setIsNavActive(false) : setIsNavActive(true)
     })
   }
 
@@ -73,6 +74,8 @@ const Nav = () => {
 
   // toggle nav active class when mobile menu is toggled
   useEffect(() => {
+    // update the ref to reference in our scroll handler
+    mobileActiveRef.current = isMobileMenuActive
     if (isMobileMenuActive && !isNavActive) {
       setIsNavActive(true)
     }
